@@ -1,0 +1,6 @@
+#!/bin/sh
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/opt/pythons/python-2.4/bin/python:/%(directory)s/parts/rubygems/bin
+export RUBYLIB=:/%(directory)s/parts/rubygems/lib:/%(directory)s/parts/rubygems/lib/ruby:/%(directory)s/parts/rubygems/lib/site_ruby/1.8
+export GEM_HOME=/%(directory)s/parts/rubygems/lib/ruby/gems/1.8
+cd %(directory)s/parts/redmine
+exec %(directory)s/parts/rubygems/bin/mongrel_rails start -e production -p %(http-server-port)s
