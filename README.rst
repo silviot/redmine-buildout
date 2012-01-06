@@ -30,7 +30,7 @@ issue
 
 ``RAILS_ENV=production ../../bin/rake db:migrate``
 
-and start the server:
+and start the unicorn server through supervisor:
 
 ``./bin/supervisord``
 
