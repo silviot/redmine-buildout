@@ -2,9 +2,9 @@
 Redmine buildout
 ================
 
+
 About
 =====
-
 A `buildout <http://www.buildout.org/>`_ configuration to deploy `redmine <http://www.redmine.org/>`_ project management.
 
 To configure the database edit the top of the file buildout.cfg. You'll need to create the database too. The default is a postgresql database named redmine.
@@ -12,6 +12,17 @@ To configure the database edit the top of the file buildout.cfg. You'll need to 
 So far you can configure the ``production-database`` name, the ``database-adapter`` and the ``http-server-port``.
 
 
+Prerequisites
+=============
+You will need ruby and ruby-dev installed. Tested with ruby 1.8.
+On Ubuntu (and probably all other debian-based distros)
+
+``sudo apt-get install build-essential libopenssl-ruby ruby1.8-dev``
+
+will install prerequisites
+
+Installation
+============
 As with all buildouts, you'll need to issue a
 
 ``python bootstrap.py``
