@@ -33,6 +33,9 @@ followed by a
 
 this will download and install redmine in the local directory.
 
+Install the database adapter of choice to the local gem repo:
+``./bin/gem1.8 install pg``
+
 After completion you can prepare the database structure: cd to the code directory
 
 ``cd parts/redmine``
