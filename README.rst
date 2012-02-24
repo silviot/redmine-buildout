@@ -46,6 +46,8 @@ issue
 
 and start the unicorn server through supervisor:
 
+``cd ../..``
+
 ``./bin/supervisord``
 
 Point your browser to http://127.0.0.1:3000/ to browse your new redmine site.
