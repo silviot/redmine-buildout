@@ -68,3 +68,12 @@ from the ``parts/redmine`` dir issue
 
 
 The code will live in ``parts/redmine`` while the data will be stored in ``var/`` and in the database.
+
+
+Postgresql caveat
+=================
+
+If you Postgresql in a region with a sane date format (d/m/y) you'll need to change the redmine db option DATESTYLE to US:
+
+``ALTER DATABASE redmine SET DATESTYLE=US;``
+
