@@ -17,7 +17,7 @@ Prerequisites
 You will need ruby and ruby-dev installed. Tested with ruby 1.8.
 On Ubuntu (and probably all other debian-based distros)
 
-``sudo apt-get install build-essential libopenssl-ruby ruby1.8-dev``
+``sudo apt-get install build-essential libopenssl-ruby ruby1.8-dev libmagickwand-dev libmagickcore-dev``
 
 will install prerequisites
 
