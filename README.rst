@@ -5,9 +5,13 @@ Redmine buildout
 
 About
 =====
-A `buildout <http://www.buildout.org/>`_ configuration to deploy `redmine <http://www.redmine.org/>`_ project management.
+A `buildout <http://www.buildout.org/>`_ configuration to deploy
+`redmine <http://www.redmine.org/>`_ project management.
 
-To configure the database edit the top of the file buildout.cfg. You'll need to create the database too. The default is a postgresql database named redmine.
+To configure the database edit the top of the file buildout.cfg.
+You'll need to create the database too.
+The default is a postgresql database named redmine.
+Edit buildout.cfg to change these settings.
 
 So far you can configure the ``production-database`` name, the ``database-adapter`` and the ``http-server-port``.
 
@@ -27,53 +31,56 @@ As with all buildouts, you'll need to issue a
 
 ``python bootstrap.py``
 
-followed by a 
+followed by a
 
 ``./bin/buildout``
 
 this will download and install redmine in the local directory.
 
-Install the database adapter of choice to the local gem repo:
-``./bin/gem1.8 install pg``
+Install the database adapter of choice to the local gem repo::
 
-After completion you can prepare the database structure: cd to the code directory
+    ./bin/gem1.8 install pg
 
-``cd parts/redmine``
+After completion you can prepare the database structure::
 
-issue
+    cd parts/redmine
+    RAILS_ENV=production ../../bin/rake db:migrate
 
-``RAILS_ENV=production ../../bin/rake db:migrate``
+and start the unicorn server through supervisor::
 
-and start the unicorn server through supervisor:
-
-``cd ../..``
-
-``./bin/supervisord``
+    cd ../..
+    ./bin/supervisord
 
 Point your browser to http://127.0.0.1:3000/ to browse your new redmine site.
 
-To stop the server use
+To stop the server use::
 
-``./bin/supervisorctl shutdown``
+    ./bin/supervisorctl shutdown
 
-and to restart it
+and to restart it::
 
-``./bin/supervisorctl restart redmine``
+    ./bin/supervisorctl restart redmine
 
-You will probably want some basic data set up in the database.
+You will probably want some basic data set up in the database::
 
-from the ``parts/redmine`` dir issue
+    cd parts/redmine
+    RAILS_ENV=production ../../bin/rake redmine:load_default_data
 
-``RAILS_ENV=production ../../bin/rake redmine:load_default_data``
+Or, if you're upgrading::
+
+    cd parts/redmine
+    RAILS_ENV=production ../../bin/rake db:migrate RAILS_ENV=production
+    RAILS_ENV=production ../../bin/rake redmine:plugins:migrate RAILS_ENV=production
 
 
-The code will live in ``parts/redmine`` while the data will be stored in ``var/`` and in the database.
+The code will live in ``parts/redmine`` while the data
+will be stored in ``var/`` and in the database.
 
 
 Postgresql caveat
 =================
 
-If you Postgresql in a region with a sane date format (d/m/y) you'll need to change the redmine db option DATESTYLE to US:
-
-``ALTER DATABASE redmine SET DATESTYLE=US;``
+If you Postgresql in a region with a sane date format (d/m/y)
+you'll need to change the redmine db option DATESTYLE to US::
+    ALTER DATABASE redmine SET DATESTYLE=US;
 
